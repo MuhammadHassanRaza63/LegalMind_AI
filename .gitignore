@@ -1,0 +1,25 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environment
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# Database and vector store
+instance/
+db_legal/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

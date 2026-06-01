@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalMind AI | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f1e8;
+            --panel: rgba(255, 250, 242, 0.92);
+            --border: rgba(97, 77, 42, 0.12);
+            --text: #1f2430;
+            --muted: #687286;
+            --gold: #916937;
+            --blue: #2f5fa7;
+            --shadow: 0 20px 50px rgba(80, 59, 28, 0.12);
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Manrope", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(47,95,167,0.12), transparent 24%),
+                radial-gradient(circle at top right, rgba(145,105,55,0.14), transparent 26%),
+                linear-gradient(180deg, #faf7f1 0%, var(--bg) 100%);
+        }
+
+        .shell {
+            width: min(1160px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 24px 0 40px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .brand strong {
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .brand span {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .top-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 14px;
+            font-weight: 700;
+            border: 1px solid var(--border);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #244a85 0%, #2f5fa7 100%);
+            color: white;
+            border: 0;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.72);
+            color: var(--text);
+        }
+
+        .hero {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            padding: 34px;
+            display: grid;
+            grid-template-columns: 1.3fr 0.9fr;
+            gap: 24px;
+        }
+
+        .hero h1 {
+            margin: 0 0 14px;
+            font-family: "Source Serif 4", serif;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.02;
+        }
+
+        .hero p {
+            margin: 0;
+            max-width: 62ch;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .stat-panel {
+            background: linear-gradient(180deg, rgba(249,243,232,0.95), rgba(240,232,217,0.95));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+        }
+
+        .stat-panel h3 {
+            margin: 0 0 14px;
+            font-size: 1rem;
+        }
+
+        .stat-panel .item {
+            padding: 14px 0;
+            border-top: 1px solid rgba(31, 36, 48, 0.08);
+        }
+
+        .stat-panel .item:first-of-type {
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        .stat-panel strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .stat-panel span {
+            color: var(--muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .grid {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.72);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 22px;
+            box-shadow: 0 14px 34px rgba(80, 59, 28, 0.06);
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <div class="topbar">
+            <div class="brand">
+                <strong>LegalMind AI</strong>
+                <span>Welcome back, {{ name }}</span>
+            </div>
+            <div class="top-actions">
+                <a class="btn btn-primary" href="{{ url_for('chat') }}">Open Chat</a>
+                <a class="btn btn-secondary" href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+
+        <section class="hero">
+            <div>
+                <h1>Legal workspace built for focused conversations.</h1>
+                <p>
+                    Yeh dashboard aap ko chat start karne se pehle context deta hai. Chat ab alag page par hai,
+                    jahan interface normal messaging style mein rakha gaya hai taake conversation natural aur readable lage.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="{{ url_for('chat') }}">Start Legal Chat</a>
+                    <a class="btn btn-secondary" href="{{ url_for('logout') }}">Sign Out</a>
+                </div>
+            </div>
+
+            <div class="stat-panel">
+                <h3>Workspace Summary</h3>
+                <div class="item">
+                    <strong>Document-grounded responses</strong>
+                    <span>Answers legal PDFs aur stored knowledge base ke context par based hain.</span>
+                </div>
+                <div class="item">
+                    <strong>Separate chat screen</strong>
+                    <span>Distraction-free dedicated chat page ab dashboard se alag available hai.</span>
+                </div>
+                <div class="item">
+                    <strong>Secure access flow</strong>
+                    <span>Login aur signup ke through user-based access maintain hota hai.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid">
+            <div class="card">
+                <h3>Consumer Issues</h3>
+                <p>Refunds, notices, and complaint process jaise matters ko simple legal steps mein break kar sakte hain.</p>
+            </div>
+            <div class="card">
+                <h3>Constitutional Guidance</h3>
+                <p>Fundamental rights aur legal interpretation ko concise aur practical style mein samajh sakte hain.</p>
+            </div>
+            <div class="card">
+                <h3>Case Preparation</h3>
+                <p>Facts ko organize karne, legal position samajhne, aur initial strategy outline banane mein help milti hai.</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
