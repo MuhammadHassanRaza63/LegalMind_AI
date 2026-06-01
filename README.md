@@ -2,8 +2,6 @@
 
 LegalMind AI is a lightweight Flask web application that provides a Pakistani-focused legal assistant powered by local document embeddings and external language models. The project demonstrates ingestion of local PDF law-books, embedding them into a Chroma vector store, and answering user queries via a Cohere chat model (configurable). The app includes user authentication (signup/login) and a simple chat UI.
 
----
-
 ## Features
 
 - User signup / login with secure password hashing
@@ -11,8 +9,6 @@ LegalMind AI is a lightweight Flask web application that provides a Pakistani-fo
 - PDF ingestion and text chunking for semantic search
 - Environment-driven configuration for API keys and secrets
 - Ready-to-run local development setup with `requirements.txt`
-
----
 
 ## Architecture / Files of Interest
 
@@ -25,16 +21,12 @@ LegalMind AI is a lightweight Flask web application that provides a Pakistani-fo
 - `.env.example` — Example environment variables (copy to `.env`)
 - `requirements.txt` — Pinning of the current environment packages
 
----
-
 ## Prerequisites
 
 - Python 3.10+ (tested with CPython 3.14)
 - Git (for cloning and pushing)
 - Recommended: create a Python virtual environment
 - Valid API keys for the external services you plan to use (see Configuration)
-
----
 
 ## Local Setup (recommended)
 
@@ -77,8 +69,6 @@ python app.py
 
 Open http://127.0.0.1:5000 in your browser.
 
----
-
 ## Configuration (environment variables)
 
 Set the following variables in your local `.env` (or environment):
@@ -91,30 +81,22 @@ Set the following variables in your local `.env` (or environment):
 
 Important: `.env` is in `.gitignore`. Never commit real API keys or secrets.
 
----
-
 ## How It Works (brief)
 
 1. On first run (if `db_legal/` is absent), the app loads PDFs from `data/`, splits them into chunks using `RecursiveCharacterTextSplitter`, computes embeddings, and writes a Chroma vector store to `db_legal/`.
 2. When a user asks a question, the app searches the vector store for relevant chunks and sends a prompt (context + question) to the configured LLM wrapper (`ChatCohere`) to generate an answer.
-
----
 
 ## Security & Privacy Notes
 
 - The repository intentionally avoids committing sensitive files: `instance/`, `db_legal/`, and `.env` are ignored in `.gitignore`.
 - If you accidentally committed secrets previously, rotate those keys immediately and remove them from history.
 - This project runs in development mode by default. For production, run under a WSGI server (e.g., `gunicorn`) behind TLS and follow best practices for secret management.
-
----
-
+  
 ## Troubleshooting
 
 - `sqlite3.OperationalError: unable to open database file` — ensure `instance/` exists and is writable.
 - Missing API key warnings — set `GOOGLE_API_KEY` and/or `COHERE_API_KEY` in `.env` when using those services.
 - LangChain/Chroma warnings — the project pins particular client packages; if you upgrade `langchain`, update imports and usage accordingly.
-
----
 
 ## Contributing
 
@@ -126,25 +108,11 @@ Contributions are welcome. Common contributions include:
 
 Please open issues or PRs on the repository and avoid including secrets in PRs.
 
----
-
 ## License
 
 This project does not include a license file by default. Add a `LICENSE` file to the repository if you want to clarify reuse terms.
 
----
-
 ## Contact
 
 Project owner: Muhammad Hassan Raza (repo owner on GitHub)
-
-If you want, I can also:
-
-- Expand this README with diagrams or examples
-- Add a small CONTRIBUTING.md and CODE_OF_CONDUCT
-- Add GitHub Actions CI to run linting/tests
-
----
-
-Thank you — run `python app.py` after populating your `.env` and let me know if you want me to add CI or a deployment guide.
-# LegalMind_AI
+Email: hassan638292@gmail.com
