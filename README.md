@@ -15,7 +15,7 @@ LegalMind AI is a lightweight Flask web application that provides a Pakistani-fo
 - `app.py` — Flask application, routes, user model and web UI entrypoint
 - `backend/engine.py` — Document loading, text-splitting, embeddings, vector store, and LLM wrapper
 - `templates/` — Jinja2 templates for `login`, `signup`, `index` and `chat`
-- `data/` — Example PDF documents (source documents for the vector DB)
+- `data/` — Example PDF documents PPC, consumer_act,Constitution of pak. 
 - `db_legal/` — Persisted Chroma vector store (ignored by git)
 - `instance/` — Local SQLite DB for user accounts (ignored by git)
 - `.env.example` — Example environment variables (copy to `.env`)
